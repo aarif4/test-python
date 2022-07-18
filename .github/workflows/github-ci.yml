@@ -38,16 +38,9 @@ jobs:
           python -m tox --result-json=.reports/tox.json
         if: always()
       
-      - name: Archive flake8 Results
+      - name: Archive flake8 and Tox Results
         uses: actions/upload-artifact@v3
         if: ${{ failure() }}
         with:
-          name: flake-report
-          path: .reports/flake/
-      
-      - name: Archive Tox Results
-        uses: actions/upload-artifact@v3
-        if: ${{ failure() }}
-        with:
-          name: tox-report
-          path: .reports/tox.json
+          name: flake-and-tox-reports
+          path: .reports/
