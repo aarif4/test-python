@@ -3,6 +3,7 @@ bump2version
 flake8
 flake8-html
 tox
+tox-report
 coverage
 
 pytest
