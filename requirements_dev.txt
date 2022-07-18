@@ -1,0 +1,9 @@
+pip
+bump2version
+flake8
+flake8-html
+tox
+coverage
+
+pytest
+black
