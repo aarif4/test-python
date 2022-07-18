@@ -35,7 +35,7 @@ jobs:
       
       - name: Test with Tox
         run: |
-          python -m tox --result-json=.reports/tox.json --html .reports/tox.html
+          python -m tox --html .reports/tox.html
         if: always()
       
       - name: Archive flake8 and Tox Results
