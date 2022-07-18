@@ -27,6 +27,7 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           python -m pip install -r requirements_dev.txt
+          mkdir .reports
       
       - name: Lint with flake8
         run: |
