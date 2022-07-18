@@ -32,20 +32,22 @@ jobs:
       - name: Lint with flake8
         run: |
           python -m flake8 . --format=html --htmldir=.reports/flake
-        if: always()
       
       - name: Test with Tox
         run: |
           python -m tox --result-json=.reports/tox.json
+        if: always()
       
       - name: Archive flake8 Results
         uses: actions/upload-artifact@v3
+        if: ${{ failure() }}
         with:
           name: flake-report
           path: .reports/flake/
       
       - name: Archive Tox Results
         uses: actions/upload-artifact@v3
+        if: ${{ failure() }}
         with:
           name: tox-report
           path: .reports/tox.json
