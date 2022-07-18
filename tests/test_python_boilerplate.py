@@ -1,4 +1,7 @@
-import pytest
 
 def test_sum():
-    assert 1 > 0
+    a = 5
+    try:
+        assert a > 0
+    except AssertionError:
+        print("variable a is less than 0")

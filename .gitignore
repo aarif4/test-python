@@ -106,4 +106,4 @@ ENV/
 .idea/
 
 # reports from tox and flake8
-.reports/*
+.report*
