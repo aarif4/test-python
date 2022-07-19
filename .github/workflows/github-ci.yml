@@ -34,7 +34,7 @@ jobs:
             uses: actions/upload-artifact@v3
             #if: ${{ failure() }}
             with:
-                name: flake-report
+                name: flake-report-${{ matrix.os }}
                 path: .report-flake
     tox:
         name: Test
@@ -68,5 +68,5 @@ jobs:
             uses: actions/upload-artifact@v3
             #if: ${{ failure() }}
             with:
-                name: tox-report
+                name: tox-report-${{ matrix.os }}
                 path: .report-tox*
