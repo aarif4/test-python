@@ -22,7 +22,7 @@ jobs:
 
         -   name: Print out python version for debugging
             run: |
-                cd test-python
+                pwd
                 python -V
 
         -   name: Install Dev Requirements
