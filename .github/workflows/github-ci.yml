@@ -3,55 +3,65 @@ name: Python package
 on: [push]
 
 jobs:
-    build:
-
-        runs-on: ubuntu-latest
-        strategy:
-            matrix:
-                python-version: [3.x]
+    flake8:
+        name: Static Analysis
+        
+        runs-on: [ubuntu-20.04, windows-2022]
 
         steps:
         -   name: Check out the Repo
             uses: actions/checkout@v3
 
-        -   name: Set up Python ${{ matrix.python-version }}
+        -   name: Set up Python 3.10
             uses: actions/setup-python@v4
             with:
-                python-version: ${{ matrix.python-version }}
+                python-version: '3.10'
                 architecture: x64
-
-        -   name: Print out python version for debugging
-            run: |
-                python -V
 
         -   name: Install Dev Requirements
             run: |
+                python -V
                 python -m pip install --upgrade pip
                 python -m pip install -r requirements_dev.txt
-                mkdir .reports
 
         -   name: Lint with flake8
             run: |
-                python -m flake8 . --format=html --htmldir=.reports/flake
+                python -m flake8 . --format=html --htmldir=.report-flake
 
-        -   name: Test with Tox
-            run: |
-                python -m tox --result-json=.reports/tox.json --html .reports/tox.html
-            if: always()
-
-        -   name: Archive flake8 and Tox Results
+        -   name: Archive flake8 Results
             uses: actions/upload-artifact@v3
             if: ${{ failure() }}
             with:
-                name: flake-and-tox-reports
-                path: .reports/
-    job2:
-
-        runs-on: ubuntu-latest
+                name: flake-report
+                path: .report-flake
+    tox:
+        name: Test
+        
+        runs-on: [ubuntu-20.04, windows-2022]
 
         steps:
-        -   name: Print out python version for debugging
+        -   name: Check out the Repo
+            uses: actions/checkout@v3
+
+        -   name: Set up Python 3.10
+            uses: actions/setup-python@v4
+            with:
+                python-version: '3.10'
+                architecture: x64
+
+        -   name: Install Dev Requirements
             run: |
-                pwd
-                ls
                 python -V
+                python -m pip install --upgrade pip
+                python -m pip install -r requirements_dev.txt
+
+        -   name: Test with Tox
+            run: |
+                python -m tox --result-json=.report-tox.json --html .report-tox.html
+
+        -   name: Archive Tox Results
+            uses: actions/upload-artifact@v3
+            if: ${{ failure() }}
+            with:
+                name: tox-report
+                path: .report-tox*
