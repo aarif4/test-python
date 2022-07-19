@@ -23,6 +23,7 @@ jobs:
         -   name: Print out python version for debugging
             run: |
                 pwd
+                ls
                 python -V
 
         -   name: Install Dev Requirements
