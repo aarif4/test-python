@@ -5,8 +5,10 @@ on: [push]
 jobs:
     flake8:
         name: Static Analysis
-        
-        runs-on: [ubuntu-20.04, windows-2022]
+        strategy:
+            matrix:
+                os: [ubuntu-20.04, windows-2022]
+        runs-on: ${{ matrix.os }}
 
         steps:
         -   name: Check out the Repo
@@ -37,7 +39,10 @@ jobs:
     tox:
         name: Test
         
-        runs-on: [ubuntu-20.04, windows-2022]
+        strategy:
+            matrix:
+                os: [ubuntu-20.04, windows-2022]
+        runs-on: ${{ matrix.os }}
 
         steps:
         -   name: Check out the Repo
