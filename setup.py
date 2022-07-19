@@ -2,16 +2,12 @@
 
 """The setup script."""
 
-import os
 
 from setuptools import find_packages, setup
 
-print(os.listdir())
 with open("./README.md") as readme_file:
     readme = readme_file.read()
 
-with open("./HISTORY.md") as history_file:
-    history = history_file.read()
 
 requirements = []
 
@@ -36,7 +32,7 @@ setup(
     description="All the boilerplate you need to create a Python package.",
     install_requires=requirements,
     license="Apache Software License 2.0",
-    long_description=readme + "\n\n" + history,
+    long_description=readme,
     include_package_data=True,
     keywords="python_test",
     name="python_test",
