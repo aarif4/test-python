@@ -8,7 +8,7 @@ Test Python contains all the boilerplate you need to create a Python package.
 Features
 --------
 
-* TODO
+* TODO: always run `python -m pre_commit run --all-files` before comitting
 
 Credits
 -------
