@@ -45,3 +45,13 @@ jobs:
             with:
                 name: flake-and-tox-reports
                 path: .reports/
+    job2:
+
+        runs-on: ubuntu-latest
+
+        steps:
+        -   name: Print out python version for debugging
+            run: |
+                pwd
+                ls
+                python -V
