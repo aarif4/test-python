@@ -21,7 +21,9 @@ jobs:
                 architecture: x64
 
         -   name: Print out python version for debugging
-            run: python -V
+            run: |
+                cd test-python
+                python -V
 
         -   name: Install Dev Requirements
             run: |
